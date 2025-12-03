@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import apiFetch from '../../../services/api'
 import {
   Box,
   Container,
@@ -45,7 +46,7 @@ const Testimonials = () => {
 
     async function load() {
       try {
-        const res = await fetch('/api/testimonials')
+        const res = await apiFetch('/testimonials')
         if (!res.ok) throw new Error('Failed to fetch')
         const data = await res.json()
         if (mounted && Array.isArray(data) && data.length) {

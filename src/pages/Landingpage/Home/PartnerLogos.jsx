@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Container, Link, CircularProgress, Typography } from '@mui/material'
+import apiFetch from '../../../services/api'
 
 // A simple, dependency-free horizontal marquee carousel for partner logos.
 // Fetches from `/api/partners` expecting: [{ name, logo, url }]
@@ -23,7 +24,7 @@ const PartnerLogos = () => {
 
     async function load() {
       try {
-        const res = await fetch('/api/partners')
+        const res = await apiFetch('/partners')
         if (!res.ok) throw new Error('no-cms')
         const data = await res.json()
         if (mounted && Array.isArray(data) && data.length) setPartners(data)

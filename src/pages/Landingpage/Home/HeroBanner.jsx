@@ -1,13 +1,3 @@
-// import React from 'react'
-
-// const HeroBanner = () => {
-//   return (
-//     <div>HeroBanner</div>
-//   )
-// }
-
-// export default HeroBanner
-
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {

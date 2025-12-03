@@ -12,7 +12,6 @@ import FinalCTA from './FinalCTA'
 const LandingHome = () => {
   return (
     <div className="landing-home">
-       
       <HeroBanner />
       <AboutPreview />
       <ProductHighlight />

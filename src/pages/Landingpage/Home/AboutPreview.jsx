@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react'
-import axios from 'axios'
+import { apiClient } from '../../../services/api'
 import { NavLink } from 'react-router-dom'
 import {
   Box,
@@ -19,7 +19,8 @@ const AboutPreview = () => {
   useEffect(() => {
     const fetchHomeData = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/home')
+        // Use apiClient so Authorization header is attached automatically
+        const res = await apiClient.get('http://localhost:5000/api/home')
         setHomeData(res.data)
       } catch (err) {
         console.error('Error fetching home data:', err)

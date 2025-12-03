@@ -8,7 +8,6 @@ import {
   Typography,
   Divider,
   IconButton,
-  
   ListItem,
   ListItemButton,
   ListItemIcon,
@@ -22,6 +21,8 @@ import {
   Chip,
   Tooltip,
 } from '@mui/material';
+import LogoutIcon from '@mui/icons-material/Logout';
+import { Outlet, useLocation } from 'react-router-dom';
 import {
   Menu as MenuIcon,
   ContentPaste as ContentPasteIcon,
@@ -72,12 +73,36 @@ const Navbar = () => {
   const handleMenuItemClick = (text, path) => {
     setSelectedItem(text);
     if (path) {
-      navigate(path);
+      // If this is a dashboard "content" path, route under /navbar so it renders in the layout
+      try {
+        if (path.startsWith('/content')) {
+          navigate(`/navbar${path}`);
+        } else {
+          navigate(path);
+        }
+      } catch {
+        navigate(path);
+      }
     }
     if (isMobile) {
       setMobileOpen(false);
     }
   };
+
+  function handleLogout() {
+    try {
+      localStorage.removeItem('token')
+      localStorage.removeItem('authToken')
+      localStorage.removeItem('accessToken')
+      localStorage.removeItem('tokenExpiry')
+      localStorage.removeItem('userInfo')
+    } catch (e) {
+      console.warn('Failed to clear localStorage on logout', e)
+    }
+    navigate('/')
+  }
+
+  const location = useLocation()
 
   const menuItems = [
     {
@@ -91,16 +116,16 @@ const Navbar = () => {
         { text: 'CMS', icon: <CMSIcon />, path: '/content/cms' },
       ],
     },
-    { text: 'Home Page', icon: <HomeIcon />, path: '/home' },
-    { text: 'About Us', icon: <InfoIcon />, path: '/about' },
-    { text: 'Add Team Type', icon: <AddTeamIcon />, path: '/team-type' },
-    { text: 'Teams', icon: <TeamsIcon />, path: '/teams', badge: 5 },
-    { text: 'Product List', icon: <ProductListIcon />, path: '/products', badge: 23 },
-    { text: 'Gallery', icon: <GalleryIcon />, path: '/gallery' },
-    { text: 'Career', icon: <CareerIcon />, path: '/career', badge: 3 },
-    { text: 'Pages', icon: <PagesIcon />, path: '/pages' },
-    { text: 'Contact Us', icon: <ContactIcon />, path: '/contact' },
-    { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+    { text: 'Home Page', icon: <HomeIcon />, path: '/navbar/home' },
+    { text: 'About Us', icon: <InfoIcon />, path: '/navbar/about' },
+    { text: 'Add Team Type', icon: <AddTeamIcon />, path: '/navbar/team-type' },
+    { text: 'Teams', icon: <TeamsIcon />, path: '/navbar/teams', badge: 5 },
+    { text: 'Product List', icon: <ProductListIcon />, path: '/navbar/content/products', badge: 23 },
+    { text: 'Gallery', icon: <GalleryIcon />, path: '/navbar/gallery' },
+    { text: 'Career', icon: <CareerIcon />, path: '/navbar/career', badge: 3 },
+    { text: 'Pages', icon: <PagesIcon />, path: '/navbar/pages' },
+    { text: 'Contact Us', icon: <ContactIcon />, path: '/navbar/contact' },
+    { text: 'Settings', icon: <SettingsIcon />, path: '/navbar/settings' },
   ];
 
   const drawer = (
@@ -498,6 +523,11 @@ const Navbar = () => {
                 </Typography>
               </Box>
             </Box>
+            <Tooltip title="Logout">
+              <IconButton color="inherit" onClick={handleLogout} sx={{ ml: 1 }}>
+                <LogoutIcon />
+              </IconButton>
+            </Tooltip>
           </Box>
         </Toolbar>
       </AppBar>
@@ -557,73 +587,79 @@ const Navbar = () => {
       >
         <Toolbar />
         
-        {/* Content Area */}
+        {/* Content Area: render child routes when available, otherwise show default dashboard */}
         <Box sx={{ mt: 2 }}>
-          <Typography 
-            variant="h4" 
-            gutterBottom 
-            sx={{ 
-              fontWeight: 700, 
-              color: '#2c3e50',
-              mb: 1,
-            }}
-          >
-            Welcome to Dashboard
-          </Typography>
-          <Typography 
-            variant="body1" 
-            sx={{ 
-              color: '#7f8c8d', 
-              mb: 4,
-            }}
-          >
-            Manage your content and settings from the sidebar navigation
-          </Typography>
-
-          {/* Sample Content Card */}
-          <Box
-            sx={{
-              backgroundColor: '#fff',
-              borderRadius: 3,
-              p: 4,
-              boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
-              transition: 'all 0.3s ease',
-              '&:hover': {
-                boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
-                transform: 'translateY(-2px)',
-              },
-            }}
-          >
-            <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, color: '#2c3e50' }}>
-              Dashboard Overview
-            </Typography>
-            <Typography variant="body1" sx={{ color: '#7f8c8d', lineHeight: 1.8 }}>
-              This is a fully responsive dashboard with a beautiful Material-UI sidebar. 
-              The navigation automatically converts to a mobile drawer on smaller screens. 
-              All menu items are interactive with smooth animations and hover effects.
-            </Typography>
-            
-            <Box sx={{ mt: 3, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
-              <Chip
-                label="Fully Responsive"
-                color="primary"
-                sx={{ fontWeight: 600 }}
-              />
-              <Chip
-                label="Material-UI"
-                color="secondary"
-                sx={{ fontWeight: 600 }}
-              />
-              <Chip
-                label="Modern Design"
+          {location.pathname !== '/' && location.pathname !== '/navbar' ? (
+            <Outlet />
+          ) : (
+            <>
+              <Typography 
+                variant="h4" 
+                gutterBottom 
                 sx={{ 
-                  backgroundColor: '#667eea', 
-                  color: '#fff',
-                  fontWeight: 600,
+                  fontWeight: 700, 
+                  color: '#2c3e50',
+                  mb: 1,
                 }}
-              />
-            </Box>
-          </Box>
+              >
+                Welcome to Dashboard
+              </Typography>
+              <Typography 
+                variant="body1" 
+                sx={{ 
+                  color: '#7f8c8d', 
+                  mb: 4,
+                }}
+              >
+                Manage your content and settings from the sidebar navigation
+              </Typography>
+
+              {/* Sample Content Card */}
+              <Box
+                sx={{
+                  backgroundColor: '#fff',
+                  borderRadius: 3,
+                  p: 4,
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.08)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    boxShadow: '0 8px 30px rgba(0,0,0,0.12)',
+                    transform: 'translateY(-2px)',
+                  },
+                }}
+              >
+                <Typography variant="h5" gutterBottom sx={{ fontWeight: 600, color: '#2c3e50' }}>
+                  Dashboard Overview
+                </Typography>
+                <Typography variant="body1" sx={{ color: '#7f8c8d', lineHeight: 1.8 }}>
+                  This is a fully responsive dashboard with a beautiful Material-UI sidebar. 
+                  The navigation automatically converts to a mobile drawer on smaller screens. 
+                  All menu items are interactive with smooth animations and hover effects.
+                </Typography>
+                
+                <Box sx={{ mt: 3, display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                  <Chip
+                    label="Fully Responsive"
+                    color="primary"
+                    sx={{ fontWeight: 600 }}
+                  />
+                  <Chip
+                    label="Material-UI"
+                    color="secondary"
+                    sx={{ fontWeight: 600 }}
+                  />
+                  <Chip
+                    label="Modern Design"
+                    sx={{ 
+                      backgroundColor: '#667eea', 
+                      color: '#fff',
+                      fontWeight: 600,
+                    }}
+                  />
+                </Box>
+              </Box>
+            </>
+          )}
         </Box>
       </Box>
     </Box>

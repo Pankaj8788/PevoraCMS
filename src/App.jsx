@@ -13,6 +13,14 @@ import Login from "./pages/signin/Login";
 import Navbar from "./pages/dashboard/Navbar";
 // dashboard
 import Banner from './pages/dashboard/Banner/Banner'
+import BlogPage from './pages/dashboard/Blog/Blogcms'
+import Newscms from './pages/dashboard/News/Newscms'
+import Policiescms from './pages/dashboard/Policies/Policiescms'
+import Homepage from './pages/dashboard/Home/Homepage'
+import Aboutus from './pages/dashboard/About/Aboutus'
+import Teamtype from './pages/dashboard/TeamType/Teamtype'
+import Teams from './pages/dashboard/Team/Teams'
+import ProductList from './pages/dashboard/Product/ProductList'
 
 // Protected Route Component
 const ProtectedRoute = ({ element }) => {
@@ -23,7 +31,8 @@ const ProtectedRoute = ({ element }) => {
 // Wrapper to access `useLocation`
 function LayoutWrapper() {
   const location = useLocation();
-  const hideLayout = ["/login", "/navbar","/content/banners"].includes(location.pathname); // 👈 Add more paths if needed
+  // Hide Header/Footer on login and any dashboard routes (mounted under /navbar)
+  const hideLayout = location.pathname === '/login' || location.pathname.startsWith('/navbar');
 
   return (
     <>
@@ -37,8 +46,24 @@ function LayoutWrapper() {
         <Route path="/careers" element={<LandingCareer />} />
         <Route path="/contact" element={<LandingContact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/navbar" element={<ProtectedRoute element={<Navbar />} />} />
-        <Route path="/content/banners" element={<ProtectedRoute element={<Banner />} />} />
+
+        {/* Dashboard layout route - Navbar renders and its <Outlet /> will render child pages */}
+        <Route path="/navbar/*" element={<ProtectedRoute element={<Navbar />} />}>
+          {/* child routes render inside Navbar's Outlet */}
+          <Route path="content/banners" element={<Banner />} />
+           <Route path="content/blog" element={<BlogPage />} />
+          <Route path="content/news" element={<Newscms />} />
+          <Route path="content/cms" element={<Policiescms />} />
+          <Route path="home" element={<Homepage />} />
+          <Route path="about" element={<Aboutus />} />
+          <Route path="team-type" element={<Teamtype />} />
+          <Route path="teams" element={<Teams />} />
+          <Route path="content/products" element={<ProductList />} />
+
+          {/* Add other dashboard child routes here, e.g.:
+              <Route path="content/blog" element={<BlogPage />} />
+          */}
+        </Route>
 
       </Routes>
       {!hideLayout && <Footer />}
