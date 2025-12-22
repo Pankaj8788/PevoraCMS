@@ -46,8 +46,6 @@ function LayoutWrapper() {
         <Route path="/careers" element={<LandingCareer />} />
         <Route path="/contact" element={<LandingContact />} />
         <Route path="/login" element={<Login />} />
-
-        {/* Dashboard layout route - Navbar renders and its <Outlet /> will render child pages */}
         <Route path="/navbar/*" element={<ProtectedRoute element={<Navbar />} />}>
           {/* child routes render inside Navbar's Outlet */}
           <Route path="content/banners" element={<Banner />} />
@@ -60,9 +58,6 @@ function LayoutWrapper() {
           <Route path="teams" element={<Teams />} />
           <Route path="content/products" element={<ProductList />} />
 
-          {/* Add other dashboard child routes here, e.g.:
-              <Route path="content/blog" element={<BlogPage />} />
-          */}
         </Route>
 
       </Routes>
