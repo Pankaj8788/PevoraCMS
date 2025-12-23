@@ -21,6 +21,10 @@ import Aboutus from './pages/dashboard/About/Aboutus'
 import Teamtype from './pages/dashboard/TeamType/Teamtype'
 import Teams from './pages/dashboard/Team/Teams'
 import ProductList from './pages/dashboard/Product/ProductList'
+import Galarycms from "./pages/dashboard/Gallary/Galarycms";
+import Careercms from "./pages/dashboard/Career/Careercms";
+import Pagescms from "./pages/dashboard/Cmspage/Pagescms";
+import Contact from "./pages/dashboard/Contact/Contactus";
 
 // Protected Route Component
 const ProtectedRoute = ({ element }) => {
@@ -57,6 +61,10 @@ function LayoutWrapper() {
           <Route path="team-type" element={<Teamtype />} />
           <Route path="teams" element={<Teams />} />
           <Route path="content/products" element={<ProductList />} />
+          <Route path="gallery" element={<Galarycms />} />
+          <Route path="career" element={<Careercms />} />
+          <Route path="pages" element={<Pagescms />} />
+          <Route path="contact" element={<Contact />} />
 
         </Route>
 
@@ -75,4 +83,3 @@ function App() {
 }
 
 export default App;
-

@@ -1,59 +1,3 @@
-// import React, { useState } from 'react'
-// import { NavLink } from 'react-router-dom'
-
-// const navItems = [
-//   { name: 'Home', to: '/' },
-//   { name: 'About', to: '/about' },
-//   { name: 'Services', to: '/services' },
-//   { name: 'Pivora Gateway', to: '/gateway' },
-//   { name: 'Blog', to: '/blog' },
-//   { name: 'Careers', to: '/careers' },
-//   { name: 'Contact', to: '/contact' },
-// ]
-
-// const Header = () => {
-//   const [open, setOpen] = useState(false)
-//   return (
-//     <header className="site-header">
-//       <div className="header-inner">
-//         <div className="logo">
-//           <NavLink to="/" className="logo-link">Pivora</NavLink>
-//         </div>
-
-//         <button
-//           className="mobile-toggle"
-//           aria-expanded={open}
-//           aria-label="Toggle navigation"
-//           onClick={() => setOpen((s) => !s)}
-//         >
-//           ☰
-//         </button>
-
-//         <nav className={`main-nav ${open ? 'open' : ''}`}>
-//           <ul>
-//             {navItems.map((item) => (
-//               <li key={item.to}>
-//                 <NavLink
-//                   to={item.to}
-//                   className={({ isActive }) => (isActive ? 'active' : '')}
-//                   onClick={() => setOpen(false)}
-//                 >
-//                   {item.name}
-//                 </NavLink>
-//               </li>
-//             ))}
-//           </ul>
-//         </nav>
-
-//         <div className="header-cta">
-//           <NavLink to="/gateway" className="cta">Get Started</NavLink>
-//         </div>
-//       </div>
-//     </header>
-//   )
-// }
-
-// export default Header
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import {
@@ -241,8 +185,6 @@ const Header = () => {
           </Toolbar>
         </Container>
       </AppBar>
-
-      {/* Mobile Drawer */}
       <Drawer
         anchor="right"
         open={drawerOpen}

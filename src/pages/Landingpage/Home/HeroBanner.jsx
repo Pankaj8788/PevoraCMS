@@ -24,7 +24,6 @@ const HeroBanner = () => {
         pt: { xs: 4, md: 0 }
       }}
     >
-      {/* Animated Background Shapes */}
       <Box
         sx={{
           position: 'absolute',
@@ -270,7 +269,6 @@ const HeroBanner = () => {
         </Grid>
       </Container>
 
-      {/* CSS Animation */}
       <style>
         {`
           @keyframes float {

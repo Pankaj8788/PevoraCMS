@@ -587,7 +587,6 @@ const Navbar = () => {
       >
         <Toolbar />
         
-        {/* Content Area: render child routes when available, otherwise show default dashboard */}
         <Box sx={{ mt: 2 }}>
           {location.pathname !== '/' && location.pathname !== '/navbar' ? (
             <Outlet />
