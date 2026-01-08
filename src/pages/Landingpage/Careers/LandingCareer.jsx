@@ -8,14 +8,14 @@ import CareersCTA from './CareersCTA'
 
 const LandingCareer = () => {
   return (
-    <div className="landing-careers">
+    < >
       <CareersHero />
-      <CultureSection />
+      {/* <CultureSection />
       <GallerySection />
       <JobOpenings />
       <JobApplyForm />
-      <CareersCTA />
-    </div>
+      <CareersCTA /> */}
+    </>
   )
 }
 

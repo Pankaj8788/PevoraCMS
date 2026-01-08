@@ -1,8 +1,9 @@
+import { Box } from '@mui/material'
 import React from 'react'
 
 const MissionSection = () => {
   return (
-    <div>MissionSection</div>
+    <Box>MissionSection</Box>
   )
 }
 

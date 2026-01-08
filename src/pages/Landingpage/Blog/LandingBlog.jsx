@@ -7,13 +7,14 @@ import NewsletterSignup from './NewsletterSignup'
 
 const LandingBlog = () => {
   return (
-    <div className="landing-blog">
-      <BlogFilters />
+    <>
       <BlogList />
-      <BlogDetails />
-      <RelatedPosts />
       <NewsletterSignup />
-    </div>
+      {/* <BlogDetails />
+      <BlogFilters />
+      <RelatedPosts />
+       */}
+    </>
   )
 }
 

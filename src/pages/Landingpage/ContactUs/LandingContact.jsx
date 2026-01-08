@@ -11,12 +11,12 @@ const LandingContact = () => {
   return (
     <div className="landing-contact">
       <Contact />
-      <ContactIntro />
+      {/* <ContactIntro />
       <ContactForm />
       <OfficeInfo />
       <MapSection />
       <SupportInfo />
-      <SocialLinks />
+      <SocialLinks /> */}
     </div>
   )
 }

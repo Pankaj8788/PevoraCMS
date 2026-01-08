@@ -11,16 +11,17 @@ import FinalCTA from './FinalCTA'
 
 const LandingHome = () => {
   return (
-    <div className="landing-home">
+    <>
       <HeroBanner />
-      <AboutPreview />
+      <ProductHighlight />
+      {/* <AboutPreview />
       <ProductHighlight />
       <CoreServices />
       <WhyChooseUs />
       <Testimonials />
       <PartnerLogos />
-      <FinalCTA />
-    </div>
+      <FinalCTA /> */}
+    </>
   )
 }
 

@@ -9,15 +9,15 @@ import AboutCTA from './AboutCTA'
 
 const LandingAboutus = () => {
   return (
-    <div className="landing-aboutus">
+    <>
       <AboutIntro />
-      <MissionSection />
+      <LeadershipTeam />
+      {/* <MissionSection />
       <VisionSection />
       <CoreValues />
-      <LeadershipTeam />
       <TimelineSection />
-      <AboutCTA />
-    </div>
+      <AboutCTA /> */}
+    </>
   )
 }
 

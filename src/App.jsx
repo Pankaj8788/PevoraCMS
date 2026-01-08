@@ -5,6 +5,7 @@ import LandingAboutus from "./pages/Landingpage/Aboutus/LandingAboutus";
 import LandingServices from "./pages/Landingpage/Services/LandingServices";
 import LandingGateway from "./pages/Landingpage/Gateway/LandingGateway";
 import LandingBlog from "./pages/Landingpage/Blog/LandingBlog";
+import BlogDetails from "./pages/Landingpage/Blog/BlogDetails";
 import LandingCareer from "./pages/Landingpage/Careers/LandingCareer";
 import LandingContact from "./pages/Landingpage/ContactUs/LandingContact";
 import Header from "./pages/Header";
@@ -25,6 +26,10 @@ import Galarycms from "./pages/dashboard/Gallary/Galarycms";
 import Careercms from "./pages/dashboard/Career/Careercms";
 import Pagescms from "./pages/dashboard/Cmspage/Pagescms";
 import Contact from "./pages/dashboard/Contact/Contactus";
+import PrivacyPolicy from "./pages/Landingpage/Policies/PrivacyPolicy";
+import TermsandCondition from "./pages/Landingpage/Policies/TermsandCondition";
+import RefundPolicy from "./pages/Landingpage/Policies/RefundPolicy";
+import CancellationPolicy from "./pages/Landingpage/Policies/CancellationPolicy";
 
 // Protected Route Component
 const ProtectedRoute = ({ element }) => {
@@ -47,10 +52,15 @@ function LayoutWrapper() {
         <Route path="/services" element={<LandingServices />} />
         <Route path="/gateway" element={<LandingGateway />} />
         <Route path="/blog" element={<LandingBlog />} />
+        <Route path="/blog/:id" element={<BlogDetails />} />
         <Route path="/careers" element={<LandingCareer />} />
         <Route path="/contact" element={<LandingContact />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/navbar/*" element={<ProtectedRoute element={<Navbar />} />}>
+         <Route path="/privacy" element={<PrivacyPolicy />} />
+          <Route path="/terms" element={<TermsandCondition />} />
+          <Route path="/refund" element={<RefundPolicy />} />
+          <Route path="/cancellationpolicy" element={<CancellationPolicy />} />
+        <Route path="/navbar/*" element={<ProtectedRoute element={<Navbar />} />}> 
           {/* child routes render inside Navbar's Outlet */}
           <Route path="content/banners" element={<Banner />} />
            <Route path="content/blog" element={<BlogPage />} />
@@ -65,6 +75,7 @@ function LayoutWrapper() {
           <Route path="career" element={<Careercms />} />
           <Route path="pages" element={<Pagescms />} />
           <Route path="contact" element={<Contact />} />
+         
 
         </Route>
 
