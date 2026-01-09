@@ -6,12 +6,12 @@ import FAQSection from './FAQSection'
 
 const LandingServices = () => {
   return (
-    <div className="landing-services">
+    < >
       <ServicesIntro />
-      <ServiceCards />
+      {/* <ServiceCards />
       <GatewayPromo />
-      <FAQSection />
-    </div>
+      <FAQSection /> */}
+    </>
   )
 }
 

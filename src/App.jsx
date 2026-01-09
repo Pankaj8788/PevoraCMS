@@ -12,6 +12,7 @@ import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Login from "./pages/signin/Login";
 import Navbar from "./pages/dashboard/Navbar";
+import { Box } from "@mui/material";
 // dashboard
 import Banner from './pages/dashboard/Banner/Banner'
 import BlogPage from './pages/dashboard/Blog/Blogcms'
@@ -56,10 +57,10 @@ function LayoutWrapper() {
         <Route path="/careers" element={<LandingCareer />} />
         <Route path="/contact" element={<LandingContact />} />
         <Route path="/login" element={<Login />} />
-         <Route path="/privacy" element={<PrivacyPolicy />} />
-          <Route path="/terms" element={<TermsandCondition />} />
-          <Route path="/refund" element={<RefundPolicy />} />
-          <Route path="/cancellationpolicy" element={<CancellationPolicy />} />
+         <Route path="/privacypolicypevora" element={<PrivacyPolicy />} />
+          <Route path="/termspolicypevora" element={<TermsandCondition />} />
+          <Route path="/refundpolicypevora" element={<RefundPolicy />} />
+          <Route path="/cancellationpolicypevora" element={<CancellationPolicy />} />
         <Route path="/navbar/*" element={<ProtectedRoute element={<Navbar />} />}> 
           {/* child routes render inside Navbar's Outlet */}
           <Route path="content/banners" element={<Banner />} />
@@ -87,9 +88,11 @@ function LayoutWrapper() {
 
 function App() {
   return (
-    <Router>
-      <LayoutWrapper />
-    </Router>
+     <Box sx={{ width: "100%", minHeight: "100vh", overflowX: "hidden" }}>
+      <Router>
+        <LayoutWrapper />
+      </Router>
+    </Box>
   );
 }
 

@@ -34,10 +34,10 @@ const Footer = () => {
   ];
 
   const legalLinks = [
-    { label: 'Privacy Policy', path: '/privacy' },
-    { label: 'Terms of Service', path: '/terms' },
-    { label: 'Refund Policy', path: '/refund' },
-    { label: 'Cancellation Policy', path: '/cancellationpolicy' }
+    { label: 'Privacy Policy', path: '/privacypolicypevora' },
+    { label: 'Terms of Service', path: '/termspolicypevora' },
+    { label: 'Refund Policy', path: '/refundpolicypevora' },
+    { label: 'Cancellation Policy', path: '/cancellationpolicypevora' }
   ];
 
   const socialLinks = [
@@ -198,7 +198,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <Box className="footer-bottom">
           <p className="copyright">
-            © {new Date().getFullYear()} Pivora Global Technology Pvt. Ltd. All Rights Reserved.
+            © {new Date().getFullYear()} Pevora Global Technology Pvt. Ltd. All Rights Reserved.
           </p>
           <Box className="bottom-links">
             {legalLinks.slice(0, 3).map((link) => (
