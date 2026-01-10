@@ -14,7 +14,7 @@ const LandingGateway = () => {
   return (
     <div className="landing-gateway">
       <Gateway />
-      <GatewayHero />
+      {/* <GatewayHero />
       <GatewayOverview />
       <GatewayFeatures />
       <ComplianceSection />
@@ -22,7 +22,7 @@ const LandingGateway = () => {
       <IndustryTabs />
       <DeveloperDocsCTA />
       <GatewayTestimonials />
-      <GatewayContactCTA />
+      <GatewayContactCTA /> */}
     </div>
   )
 }
